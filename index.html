@@ -2,22 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home work 11</title>
+    <title>HW - 11</title>
     <script type="module" crossorigin src="/goit-js-hw-11/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-DEenWwFD.js">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/vendor-DumFYO8Z.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-BFmRD_RC.css">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-DH2CaQaJ.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/vendor-Dr4k8ETB.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-g5hfI0Nf.css">
   </head>
   <body>
-    <form class="form">
-      <input class="input-search" type="text" name="search" placeholder="Search images..." />
-      <button class="button-search" type="submit">Search</button>
+    <form class="search-form">
+      <input
+        type="text"
+        class="form-input"
+        id="image-search"
+        name="input"
+        placeholder="Search images..."
+      />
+      <button type="submit" class="search-btn">Search</button>
     </form>
-    
-    <div class="loader"></div>
-    
+    <div class="loader-placeholder"></div>
     <ul class="gallery"></ul>
   </body>
 </html>
