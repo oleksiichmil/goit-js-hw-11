@@ -1,31 +1,69 @@
-export const renderImages = images => {
-  return images
-    .map(
-      image => `
-    <li class='gallery-item'>
-      <a href="${image.largeImageURL}">
-        <img alt="${image.tags}" src="${image.webformatURL}" class='gallery-image'/>
-      </a>
-      <ul class='list-info'>
-        <li class='item-info'>
-          <p class='title-info'>Likes</p>
-          <p class='count-info'>${image.likes}</p>
-        </li>
-        <li class='item-info'>
-          <p class='title-info'>Views</p>
-          <p class='count-info'>${image.views}</p>
-        </li>
-        <li class='item-info'>
-          <p class='title-info'>Comments</p>
-          <p class='count-info'>${image.comments}</p>
-        </li>
-        <li class='item-info'>
-          <p class='title-info'>Downloads</p>
-          <p class='count-info'>${image.downloads}</p>
-        </li>
-      </ul>
-    </li>
-    `
-    )
-    .join('');
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import octagonIcon from '../img/bi_x-octagon.svg';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+const ulElem = document.querySelector('ul.gallery');
+export const showError = text => {
+  iziToast.show({
+    message: text,
+    position: 'center',
+    iconUrl: octagonIcon,
+    iconColor: '#FFFFFF',
+    backgroundColor: '#EF4040',
+    messageColor: '#FFFFFF',
+    progressBarColor: '#B51B1B',
+  });
+};
+export const showGallery = images => {
+  function imageTemplate({
+    webformatURL,
+    largeImageURL,
+    tags,
+    likes,
+    views,
+    comments,
+    downloads,
+  }) {
+    return `
+<li class="gallery-item">
+  <a class="gallery-link" href="${largeImageURL}">
+    <img
+      class="gallery-image"
+      src="${webformatURL}"
+      alt="${tags}"
+    />
+  </a>
+  <div class = "image-info-block">
+    <div class = "image-info-block-part">
+      <p class="bold">Likes</p>
+      <p></p>${likes}</p>
+  </div>
+    <div class = "image-info-block-part">
+    <p class="bold">Views</p>
+    <p>${views}</p>
+  </div>
+  <div class = "image-info-block-part">
+    <p class="bold">Comments</p>
+    <p>${comments}</p>
+  </div>
+  <div class = "image-info-block-part">
+    <p class="bold">Downloads</p>
+    <p>${downloads}</p>
+  </div>
+</div>
+</li>
+`;
+  }
+  ulElem.innerHTML = images.map(imageTemplate).join('');
+  let gallery = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+  });
+  gallery.refresh();
+};
+
+export const clearGallery = () => {
+  ulElem.innerHTML = '';
 };
